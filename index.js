@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ip = require('ip')
+const bodyParser = require('body-parser')
 
 const express = require('express');
 
@@ -30,7 +31,11 @@ app.route('/')
 app.route('/api/getSystems')
     .get((req,res) => {
         let out = [];
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> d772a1a6a8f46c3a390d13a90b25fada1bac0b47
         config.systems.forEach((element) => {
             out.push(element.name)
         });

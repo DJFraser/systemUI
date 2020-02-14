@@ -32,7 +32,7 @@ function createCards(data){
                 console.log(data);
 
                 systemHTML(data.type, data.name, index);
-                serviceHTML(data.services, index)
+                serviceGridHTML(data.services, index)
             }
         })
     })
@@ -63,23 +63,24 @@ function systemHTML(type, name, index){
 /**
  * create service card
  */
-function serviceHTML(services, index){
+function serviceGridHTML(services, index){
     let str = '';
-
-
+    
     services.forEach((service) => {
-        let dest = '';
-        if(service.hasOwnProperty('port')){
-            dest = `:${service.port}`
-        }
-
         str += `
-        <div class="service">
-            ${service.service} <a href="http://192.168.0.30${dest}" target="_blank">link</a>
+        <div class="serCard">
+            ${service.service}
         </div>`
     })
 
-    $(`#service_${index}`).append(str)
+    let base = `
+    <div class="service">
+        <div class="servBlock">
+            ${str}
+        </div>
+    </div>`;
+
+    $(`#service_${index}`).append(base)
 }
 
 /**

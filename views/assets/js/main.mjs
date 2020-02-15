@@ -4,9 +4,17 @@ $(document).ready(() => {
 
     // Set Page Title
     $.ajax({
-        url : baseUrl + '/api/getName',
+        url : baseUrl + '/api/getApp',
         success : (data) => {
-            document.title = data
+            document.title = data.name
+            $('#navBarTitle').html(`<i class="fa fa-network-wired"></i>       ${data.name}`)
+            
+            if(data.hasOwnProperty("sidebar")){
+                if(data.sidebar){
+                    $('#sidebar').show();
+                    $('#psudoSidebar').hide();
+                }
+            }
         }
     })
 
@@ -17,6 +25,25 @@ $(document).ready(() => {
             createCards(data);
         }
     })
+
+    // Back to top button functionality
+    $(document).ready(function(){
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+
+        $('body,html').animate({
+            scrollTop: 0
+            }, 500);
+            return false;
+        });
+    });
 })
 
 function createCards(data){
@@ -32,7 +59,7 @@ function createCards(data){
                 console.log(data);
 
                 systemHTML(data.type, data.name, index);
-                serviceGridHTML(data.services, index)
+                serviceGridHTML(data.services, data.baseurl, index)
             }
         })
     })
@@ -45,17 +72,14 @@ function systemHTML(type, name, index){
     let str = '';
 
     str = `
-    <div id="system_${index}" class="system ${type}">
-        <div class="system_header">
-            <table class="system_table">
-                <tr>
-                    <td class="system_image">${systemImage(type)}</tD>
-                    <th class="system_name">${name}</th>
-                </tr>
-            </table>
-        </div>
-        <div class="services" id="service_${index}"></div>
-    </div>`
+        <div class="card sys mt-3">
+            <div class="card-header text-center">
+                ${systemImage(type)} ${name}
+            </div>
+            <div class="card-body">
+                <div class="row row-cols-3 row-cols-md-5" id="services_${index}"></div>
+            </div>
+        </div>`
 
     $('#systems').append(str)
 }
@@ -63,24 +87,49 @@ function systemHTML(type, name, index){
 /**
  * create service card
  */
-function serviceGridHTML(services, index){
+function serviceGridHTML(services, baseUrl, index){
     let str = '';
     
     services.forEach((service) => {
+        let title = service.name || service.service;
         str += `
-        <div class="serCard">
-            ${service.service}
-        </div>`
+        <div class="col mb-3">
+            <div class="card bg-light">
+                <img class="img-fluid" src="http://placehold.it/400x300" alt="image">
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">${title}</h5>
+            </div>
+
+            <a href="${linkHref(service, baseUrl)}" target="_blank" class="stretched-link"></a>
+        </div>
+        `
     })
 
-    let base = `
-    <div class="service">
-        <div class="servBlock">
-            ${str}
-        </div>
-    </div>`;
+    $(`#services_${index}`).append(str)
+}
 
-    $(`#service_${index}`).append(base)
+function linkHref(serv, baseUrl){
+    let href = "http://" + baseUrl;
+    
+    // if service requires HTTPS
+    if(serv.hasOwnProperty('https')){
+        if(serv.https == true){
+            href = "https://" + baseUrl;
+        }
+    }
+    
+    // Check for Service Port
+    if(serv.hasOwnProperty('port')){
+        href += `:${serv.port}`
+    }
+
+    // Check for Service URL
+    if(serv.hasOwnProperty('url')){
+        href += `/${serv.url}`
+    }
+
+    return href
 }
 
 /**
@@ -92,15 +141,15 @@ function systemImage(type){
     
     switch (type){
         case "media" : {
-            imageHTML = `<i class="fas fa-play-circle"></i>`;
+            imageHTML = `<i class="fas fa-play-circle float-left"></i>`;
             break;
         }
         case "server" : {
-            imageHTML = `<i class="fas fa-server"></i>`;
+            imageHTML = `<i class="fas fa-server float-left"></i>`;
             break;
         }
         default : {
-            imageHTML = `<i class="fas fa-desktop"></i>`;
+            imageHTML = `<i class="fas fa-desktop float-left"></i>`;
             break;
         }
     }

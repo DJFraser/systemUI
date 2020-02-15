@@ -8,13 +8,35 @@
         
         <script src="assets/js/jquery-3.4.1.js"></script>
         <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
     </head>
 
     <body>
-        <div class="middle">
-            <div class="header"></div>
-            <div id="systems"></div>
+
+        <nav class="navbar sticky-top navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="fas fa-network-wired"></i>  SystemUI</span>
+        </nav>
+
+        <div class="container-fluid">
+            
+            <div class="row">
+                <!-- Sidebar -->
+                <div id="sidebar" class="col-md-2 bg-dark" style="display: none;"></div>
+                <!-- fake sidebar for spacing when not in use -->
+                <div id="psudoSidebar" class="col-md-2"></div>
+                
+                <div class="col-md-8" id="systems">
+                    
+                </div>
+
+                <!-- Back to top Button -->
+                <div class="col-md-2">
+                    <button id="back-to-top" class="btn btn-primary btn-lg back-to-top"><i class="fas fa-arrow-up"></i></button>
+                </div>
+            </div>
         </div>
-       <script src="assets/js/main.mjs" type="module"></script>
+       
+        <script src="assets/js/bootstrap.bundle.js"></script>
+        <script src="assets/js/main.mjs" type="module"></script>
     </body>
 </html>

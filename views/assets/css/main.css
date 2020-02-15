@@ -1,57 +1,22 @@
-html body {
-    margin: 0;
+.sys > .card-body{
+    padding: 2.5%;
 }
 
-.middle {
-    width: 75vw;
-    min-height: 100vh;
-    margin: auto;
-}
-
-.system {
-    margin: 2vh 0;
-    background-color: lightgray;
-    
-    border-radius: 10px;
-}
-
-.system_header {
-    background-color: grey;
-    border-radius: 10px 10px 5px 5px;
-}
-
-.services {
-    padding: 0 2vw;
-}
-
-.servBlock::after{
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.serCard {
-    float: left;
-    width: 19%;
-    padding: 0 4px;
-    text-align: center;
-    margin : 1% 2.5% 1% 2.5%;
-
-    /* test */
-    background-color: black;
-    color: white;
-}
-
-.system_table {
-    width: 100%;
+#navBarTitle {
     font-size: 2rem;
-    padding: 2vh;
 }
-.system_image {
-    width: 10%;
+
+.sys > .card-header {
+    font-size: 2rem;
+}
+.sys > .card-header > .fas {
     font-size: 3rem;
 }
-.system_name {
-    width: 90%;
-}
 
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}

@@ -22,9 +22,9 @@ app.route('/')
 
 // Api Endpoints
 
-app.route('/api/getName')
+app.route('/api/getApp')
     .get((req,res) => {
-        res.status(200).send(config.name)
+        res.status(200).send(config.app)
     })
 
 /**

@@ -1,5 +1,7 @@
 const baseUrl = window.location.origin;
 
+
+
 $(document).ready(() => {
 
     // Set Page Title
@@ -8,13 +10,6 @@ $(document).ready(() => {
         success : (data) => {
             document.title = data.name
             $('#navBarTitle').html(`<i class="fa fa-network-wired"></i>       ${data.name}`)
-            
-            if(data.hasOwnProperty("sidebar")){
-                if(data.sidebar){
-                    $('#sidebar').show();
-                    $('#psudoSidebar').hide();
-                }
-            }
         }
     })
 
@@ -26,24 +21,22 @@ $(document).ready(() => {
         }
     })
 
-    // Back to top button functionality
-    $(document).ready(function(){
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                $('#back-to-top').fadeIn();
-            } else {
-                $('#back-to-top').fadeOut();
-            }
-        });
-        // scroll body to 0px on click
-        $('#back-to-top').click(function () {
-
+    // Back to top button functionality  
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            $('#back-to-top').fadeIn();
+        } else {
+            $('#back-to-top').fadeOut();
+        }
+    });
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
         $('body,html').animate({
             scrollTop: 0
             }, 500);
             return false;
-        });
     });
+
 })
 
 function createCards(data){
@@ -56,8 +49,6 @@ function createCards(data){
                 "system" : system
             },
             success : (data) => {
-                console.log(data);
-
                 systemHTML(data.type, data.name, index);
                 serviceGridHTML(data.services, data.baseurl, index)
             }
@@ -95,7 +86,7 @@ function serviceGridHTML(services, baseUrl, index){
         str += `
         <div class="col mb-3">
             <div class="card bg-light">
-                <img class="img-fluid" src="http://placehold.it/400x300" alt="image">
+            <img class="img-thumbnail" src="http://placehold.it/400x300" alt="image">
             </div>
             <div class="card-body text-center">
                 <h5 class="card-title">${title}</h5>

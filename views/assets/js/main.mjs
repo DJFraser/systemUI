@@ -86,7 +86,7 @@ function serviceGridHTML(services, baseUrl, index){
         str += `
         <div class="col mb-3">
             <div class="card bg-light">
-            <img class="img-thumbnail" src="http://placehold.it/400x300" alt="image">
+                <div class="service_card service_${service.service}"></div>
             </div>
             <div class="card-body text-center">
                 <h5 class="card-title">${title}</h5>

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-        <title>Config Editor</title>
+        <title>Config Upload</title>
 
         <link rel="stylesheet" href="assets/css/main.css">
         
@@ -14,7 +14,7 @@
     <body class="bg-dark">
 
         <nav class="navbar sticky-top navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="far fa-edit"></i> Config Editor</span>
+            <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="far fa-edit"></i> Config Upload</span>
 
         </nav>
 
@@ -25,39 +25,22 @@
                 <div id="sidebar" class="col-md-6">
                     <div class="card">
                         <h5 class="card-header">
-                            Editor
+                            Config
                         </h5>
                         <div class="card-body">
                             <div class="form-group">
-                                <textarea class="form-control" id="configEditor" rows="20"></textarea>
+                                <div class="custom-file text-left">
+                                    <input type="file" class="custom-file-input" id="configUpload" accept=".json">
+                                    <label class="custom-file-label" for="configUpload">Choose file</label>
+                                </div>
+                                <button type="button" id="uploadConfig" class="btn btn-primary btn-block"><i class="fas fa-upload"></i>    Upload</button>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="configEditor" rows="20" disabled></textarea>
                             </div>
                             <button type="button" id="testConfig" class="btn btn-primary btn-block"><i class="fas fa-play float-left"></i>    Test</button>
                             <button type="button" id="uploadServer" class="btn btn-primary btn-block"><i class="fas fa-upload float-left"></i>    Upload To Server</button>
-                            <button type="button" id="downloadEditor" class="btn btn-primary btn-block"><i class="fas fa-download"></i>    Download</button>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h5 class="card-header">
-                            Additional Options
-                        </h5>
-                        <div class="card-body">
-                            <table class="table table-striped table-hover">
-                                <tbody>
-                                    <tr>
-                                        <th>File</th>
-                                        <td class="text-right">
-                                            <button type="button" id="uploadConfig" class="btn btn-primary btn-block"><i class="fas fa-upload"></i>    Upload</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Current Config</th>
-                                        <td class="text-right"> 
-                                            <button type="button" id="getCurrentConfig" class="btn btn-primary btn-block"><i class="fas fa-download"></i>    Download</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <button type="button" id="getCurrentConfig" class="btn btn-primary btn-block"><i class="fas fa-download"></i>    Download Current Config</button>
                         </div>
                     </div>
                 </div>

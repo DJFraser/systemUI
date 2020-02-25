@@ -33,14 +33,6 @@ $('#getCurrentConfig').on('click', () => {
     })
 })
 
-$('#downloadEditor').on('click', () => {
-    var blob=new Blob([$("#configEditor").val()]);
-    var link=document.createElement('a');
-    link.href=window.URL.createObjectURL(blob);
-    link.download="config.json";
-    link.click();
-})
-
 $('#uploadServer').on('click', () => {
     let configText = $('#configEditor').val();
 
@@ -76,6 +68,32 @@ $('#testConfig').on('click', () => {
     } else {
         console.log('Invalid JSON')
     }
+})
+
+$('#configUpload').on('change', function(){
+    let filename = $(this)[0].files[0].name;
+    console.log(filename)
+    $(this).next('.custom-file-label').addClass('selected').html(filename);
+})
+
+$('#uploadConfig').on('click', () => {
+    let formData = new FormData();
+
+    var upload = $('#configUpload')[0].files[0];
+    formData.append('configUpload', upload)
+
+    $.ajax({
+        url : baseUrl + '/api/readJSONFile',
+        method : "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success : (data) => {
+            $('#configEditor').val(JSON.stringify(data, null, 2))
+        }
+    })
+
 })
 
 function checkJson(str){

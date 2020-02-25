@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const ip = require('ip');
+const formidable = require('formidable')
 
 const express = require('express');
 
@@ -12,8 +13,10 @@ var config = loadConfig();
 
 function loadConfig(){
     if(fs.existsSync('config.json')){
+        console.log('Config File Found')
         return JSON.parse(fs.readFileSync('config.json'))
     } else {
+        console.log('No Config File Found - Using Defaults')
         return {
             app : {name : "Server Homepage", port : 8080},
             systems : [
@@ -123,6 +126,28 @@ app.route('/api/setConfig')
             config = loadConfig();
 
             res.sendStatus(200)
+        })
+    })
+
+app.route('/api/readJSONFile')
+    .post((req,res) => {
+        var form = new formidable.IncomingForm();
+        form.uploadDir = path.join(__dirname, './tmp')
+        form.parse(req, (err, fields, files) => {
+            if(err){
+                res.sendStatus(500);
+
+                throw err
+            } else {
+                try {
+                    let fileJson = JSON.parse(fs.readFileSync(files.configUpload.path))
+                    res.status(200).send(fileJson);
+                } catch (error) {
+                    res.status(500).send('Verification Error');
+                }
+
+                fs.unlinkSync(files.configUpload.path)
+            }
         })
     })
 

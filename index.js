@@ -11,7 +11,30 @@ var app = express()
 var config = loadConfig();
 
 function loadConfig(){
-    return JSON.parse(fs.readFileSync('config.json'))
+    if(fs.existsSync('config.json')){
+        return JSON.parse(fs.readFileSync('config.json'))
+    } else {
+        return {
+            app : {name : "Server Homepage", port : 8080},
+            systems : [
+                {
+                    "name": "No Systems Available",
+                    "type": "server",
+                    "baseurl": ip.address(),
+                    "services": [
+                        {
+                            "name": "Add",
+                            "service": "admin",
+                            "port": "8080",
+                            "url" : "editor",
+                            "desc": "Add Systems"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+    
 }
 
 app.use('/assets', express.static(path.join(__dirname, 'views/assets')))
@@ -21,6 +44,7 @@ app.use(express.json())
 
 app.route('/')
     .get((req,res) => {
+        config = loadConfig();
         res.sendFile(path.join(__dirname, './views/index.html'));
     })
 

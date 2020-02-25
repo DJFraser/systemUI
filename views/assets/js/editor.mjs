@@ -44,7 +44,8 @@ $('#uploadServer').on('click', () => {
                 "config" : JSON.parse(configText)
             },
             success : () => {
-                
+                // Redirect to main page on completion
+                window.location.pathname = '/';
             }
         })
     } else {

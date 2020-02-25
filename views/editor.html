@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-        <title>Live Editor</title>
+        <title>Config Editor</title>
 
         <link rel="stylesheet" href="assets/css/main.css">
         
@@ -14,7 +14,8 @@
     <body class="bg-dark">
 
         <nav class="navbar sticky-top navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="far fa-edit"></i>  Live Editor</span>
+            <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="far fa-edit"></i> Config Editor</span>
+
         </nav>
 
         <div class="container-fluid bg-dark">
@@ -27,36 +28,32 @@
                             Editor
                         </h5>
                         <div class="card-body">
-                            aflskjn
+                            <div class="form-group">
+                                <textarea class="form-control" id="configEditor" rows="20"></textarea>
+                            </div>
+                            <button type="button" id="testConfig" class="btn btn-primary btn-block"><i class="fas fa-play float-left"></i>    Test</button>
+                            <button type="button" id="uploadServer" class="btn btn-primary btn-block"><i class="fas fa-upload float-left"></i>    Upload To Server</button>
+                            <button type="button" id="downloadEditor" class="btn btn-primary btn-block"><i class="fas fa-download"></i>    Download</button>
                         </div>
                     </div>
 
                     <div class="card">
                         <h5 class="card-header">
-                            Options
+                            Additional Options
                         </h5>
                         <div class="card-body">
                             <table class="table table-striped table-hover">
                                 <tbody>
                                     <tr>
-                                        <th>Editor</th>
-                                        <td class="text-right"> 
-                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-play"></i>    Test</button>
-                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-upload"></i>    Upload</button>
-                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Save As</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th>File</th>
                                         <td class="text-right">
-                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-upload"></i>    Upload</button>
-                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Download</button>
+                                            <button type="button" id="uploadConfig" class="btn btn-primary btn-block"><i class="fas fa-upload"></i>    Upload</button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Current Config</th>
                                         <td class="text-right"> 
-                                            <button type="button" id="getCurrentConfig" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Download</button>
+                                            <button type="button" id="getCurrentConfig" class="btn btn-primary btn-block"><i class="fas fa-download"></i>    Download</button>
                                         </td>
                                     </tr>
                                 </tbody>

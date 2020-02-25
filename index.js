@@ -77,6 +77,15 @@ app.route('/api/getCurrentConfig')
         res.send(JSON.stringify(config, null, 2))
     })
 
+app.route('/api/setConfig')
+    .post((req,res) => {
+        let uploadConfig = req.body.config;
+
+        console.log(uploadConfig);
+
+        res.sendStatus(200)
+    })
+
 app.listen(port, () => {
     console.log(`Listening on http://${ip.address()}:${port}`)
 })

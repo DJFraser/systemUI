@@ -8,7 +8,11 @@ const port = 8080;
 var app = express()
 
 // Load systems Config
-const config = require(path.join(__dirname, 'config.json'));
+var config = loadConfig();
+
+function loadConfig(){
+    return JSON.parse(fs.readFileSync('config.json'))
+}
 
 app.use('/assets', express.static(path.join(__dirname, 'views/assets')))
 
@@ -87,9 +91,15 @@ app.route('/api/setConfig')
     .post((req,res) => {
         let uploadConfig = req.body.config;
 
-        console.log(uploadConfig);
+        fs.writeFile('config.json', JSON.stringify(uploadConfig, null, 2), (err) => {
+            if(err){
+                res.sendStatus(500);
+            }
 
-        res.sendStatus(200)
+            config = loadConfig();
+
+            res.sendStatus(200)
+        })
     })
 
 app.listen(port, () => {

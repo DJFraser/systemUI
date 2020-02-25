@@ -77,6 +77,12 @@ app.route('/api/getCurrentConfig')
         res.send(JSON.stringify(config, null, 2))
     })
 
+
+/**
+ * setConfig
+ * 
+ * post : Set the config file for server
+ */
 app.route('/api/setConfig')
     .post((req,res) => {
         let uploadConfig = req.body.config;

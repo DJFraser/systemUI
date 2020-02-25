@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap.css">
     </head>
 
-    <body>
+    <body class="bg-dark">
 
         <nav class="navbar sticky-top navbar-dark bg-dark">
             <span class="navbar-brand mb-0 h1" id="navBarTitle"><i class="far fa-edit"></i>  Live Editor</span>
@@ -22,7 +22,47 @@
             <div class="row">
                 <!-- Sidebar -->
                 <div id="sidebar" class="col-md-6">
-                    
+                    <div class="card">
+                        <h5 class="card-header">
+                            Editor
+                        </h5>
+                        <div class="card-body">
+                            aflskjn
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h5 class="card-header">
+                            Options
+                        </h5>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>Editor</th>
+                                        <td class="text-right"> 
+                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-play"></i>    Test</button>
+                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-upload"></i>    Upload</button>
+                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Save As</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>File</th>
+                                        <td class="text-right">
+                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-upload"></i>    Upload</button>
+                                            <button type="button" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Download</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Current Config</th>
+                                        <td class="text-right"> 
+                                            <button type="button" id="getCurrentConfig" class="btn btn-primary btn-lg"><i class="fas fa-download"></i>    Download</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="col-md-5" id="systems">
@@ -37,6 +77,6 @@
         </div>
        
         <script src="assets/js/bootstrap.bundle.js"></script>
-        <script src="assets/js/main.mjs" type="module"></script>
+        <script src="assets/js/editor.mjs" type="module"></script>
     </body>
 </html>

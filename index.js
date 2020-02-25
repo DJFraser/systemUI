@@ -67,6 +67,15 @@ app.route('/api/getSystems')
         }
     })
 
+/**
+ * getCurrentConfig
+ * 
+ * get : sends the current config as json
+ */
+app.route('/api/getCurrentConfig')
+    .get((req,res) => {
+        res.send(JSON.stringify(config, null, 2))
+    })
 
 app.listen(port, () => {
     console.log(`Listening on http://${ip.address()}:${port}`)

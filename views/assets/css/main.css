@@ -23,6 +23,7 @@
 
 .service_card {
     background-repeat: no-repeat;
+    background-image: url(../img/service.png);
     background-position: center;
     background-size: contain;
 
@@ -59,4 +60,16 @@
 
 .service_jenkins {
     background-image: url(../img/jenkins.png);
+}
+
+.service_admin {
+    background-image: url(../img/admin.png);
+}
+
+.service_terminal {
+    background-image: url(../img/terminal.png);
+}
+
+.service_voip {
+    background-image: url(../img/voip.png);
 }

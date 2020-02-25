@@ -1,4 +1,16 @@
+import * as card from './cards.mjs'
+
 const baseUrl = window.location.origin;
+
+$(document).ready(() => {
+    // scroll body to 0px on click
+    $('#back-to-top').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+            }, 500);
+            return false;
+    });
+})
 
 $('#getCurrentConfig').on('click', () => {
     $.ajax({
@@ -24,22 +36,44 @@ $('#downloadEditor').on('click', () => {
 $('#uploadServer').on('click', () => {
     let configText = $('#configEditor').val();
 
-    try {
-        var json = JSON.parse(configText);
-        if(typeof json === 'object'){
-            console.log(json)
-            $.ajax({
-                url : baseUrl + '/api/setConfig',
-                method : "POST",
-                data: {
-                    "config" : json
-                },
-                success : () => {
-                    
-                }
-            })
-        }
-      } catch (e) {
-        console.log('Invlaid Json')
-      }
+    if(checkJson(configText)){
+        $.ajax({
+            url : baseUrl + '/api/setConfig',
+            method : "POST",
+            data: {
+                "config" : JSON.parse(configText)
+            },
+            success : () => {
+                
+            }
+        })
+    } else {
+        console.log('Invalid JSON')
+    }
 })
+
+$('#testConfig').on('click', () => {
+    let configText = $('#configEditor').val();
+
+    $('#systems').html('')
+
+    if(checkJson(configText)){
+        let json = JSON.parse(configText);
+
+        json.systems.forEach((data, index) => {
+            card.systemHTML(data.type, data.name, index);
+            card.serviceGridHTML(data.services, data.baseurl, index)
+        })
+    } else {
+        console.log('Invalid JSON')
+    }
+})
+
+function checkJson(str){
+    try {
+        var json = JSON.parse(str);
+        return (typeof json === 'object')
+      } catch (e) {
+        return false
+      }
+}

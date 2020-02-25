@@ -20,6 +20,12 @@ app.route('/')
         res.sendFile(path.join(__dirname, './views/index.html'));
     })
 
+// Live Editor Link
+app.route('/editor')
+    .get((req,res) => {
+        res.sendFile(path.join(__dirname, './views/editor.html'))
+    })
+
 // Api Endpoints
 
 app.route('/api/getApp')

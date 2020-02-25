@@ -83,6 +83,11 @@ function serviceGridHTML(services, baseUrl, index){
     
     services.forEach((service) => {
         let title = service.name || service.service;
+        
+        let desc = ""
+        if(service.hasOwnProperty('desc')){
+            desc = `<p class="card-text">${service.desc}</p>`
+        }
         str += `
         <div class="col mb-3">
             <div class="card bg-light">
@@ -90,6 +95,7 @@ function serviceGridHTML(services, baseUrl, index){
             </div>
             <div class="card-body text-center">
                 <h5 class="card-title">${title}</h5>
+                ${desc}
             </div>
 
             <a href="${linkHref(service, baseUrl)}" target="_blank" class="stretched-link"></a>

@@ -5,11 +5,17 @@ const formidable = require('formidable')
 
 const express = require('express');
 
-const port = 8080;
+var port = 8080;
 var app = express()
 
 // Load systems Config
 var config = loadConfig();
+
+
+// If config has specified port set port to specified
+if(config.app.hasOwnProperty('port')){
+    port = config.app.port;
+}
 
 function loadConfig(){
     if(fs.existsSync('config.json')){
